@@ -1,0 +1,8 @@
+{ "sites": 
+    [
+        "google.com",
+        "cnn.com",
+        "espn.com"
+    ],
+  "delay": 20
+}
