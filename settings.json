@@ -1,8 +1,19 @@
 { "sites": 
     [
-        "google.com",
-        "cnn.com",
-        "espn.com"
-    ],
-  "delay": 20
+        { "url": "google.com",
+          "description": "Ulaanbaatar",
+          "UTCHour": "16",
+          "UTCMinute": "30" 
+        },
+        { "url": "cnn.com",
+          "description": "Denver",
+          "UTCHour": "00",
+          "UTCMinute": "30"
+        },
+        { "url": "espn.com",
+          "description": "Chicago",
+          "UTCHour": "01",
+          "UTCMinute": "02"
+        }
+    ]
 }

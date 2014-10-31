@@ -2,12 +2,12 @@
 
 var webshot = require('webshot');
 var async = require('async');
-var zip = new require('node-zip')();
 var fs = require('fs');
 var smtpSettings = require('./smtp.json');
 var mailer = require('./mailer');
-var dateFormat = require('dateformat');
 var settings = require('./settings.json');
+var moment = require('moment');
+moment().format();
 
 ////
 // Possible changes here
@@ -21,67 +21,52 @@ var tmpDir = './tmp/';
 ////
 
 var sites = settings.sites;
-var delay = settings.delay * 1000;  // Delay in ms
+
+var delayToFirstScreenshot = function (hour, minute) {
+  var now = moment.utc();
+  var start = moment.utc([now.year(), now.month(), now.date(), hour, minute]);
+  var diff = start.diff(now, 'minutes');
+  if (diff < 0) {
+    diff = (24 * 60) + diff;
+  }
+  // Output diff in ms
+  return diff * 60 * 1000;
+};
 
 // Setup the mailer
 mailer.setup(smtpSettings);
 
-// Build up the screenshot tasks
-var asyncTasks = [];
-sites.forEach(function(site) {
-  asyncTasks.push(function(callback) {
-    webshot(site, tmpDir + site + '.png', function(err) {
-      callback(null);
-    });
+// Get the screenshot and send via email
+var getScreenshot = function (site) {
+  console.log('[' + moment.utc().format() + '] Getting screenshot of ' + site.url);
+  var filePath = tmpDir + site.description + '.png';
+  webshot(site.url, filePath, function(err) {
+    sendEmail(site.description, filePath);
   });
+};
+
+sites.forEach(function(site) {
+  // Figure out the delay until the first screenshot should happen and then 
+  // set a 1 day interval
+  var timeToStart = delayToFirstScreenshot(site.UTCHour, site.UTCMinute);
+  console.log('Will take a screenshot of ' + site.url + ' in ' +
+    timeToStart/1000 + ' seconds.');
+  setTimeout(function () {
+    getScreenshot(site);
+    setInterval(function () {
+      getScreenshot(site);
+    }, 24 * 60 * 60 * 1000);
+  }, timeToStart);
 });
 
-var doAllTheThings = function() {
-  async.parallel(asyncTasks, function(err, results) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    
-    // Screenshots done
-    console.log('Generated all screenshots');
-
-    // Zip up results
-    console.log('Zipping up all the images');
-    makeZip();
-
-    // Email file
-    console.log('Sending out an email');
-    sendEmail();
-  });
-};
-
-doAllTheThings();
-setInterval(function () {
-  doAllTheThings();
-}, delay);
-
-// Zip up files in the temp directory
-var makeZip = function () {
-  var files = fs.readdirSync(tmpDir);
-  files.forEach(function(file) {
-    var fileName = tmpDir + file;
-    var imgData = fs.readFileSync(fileName);
-    zip.file(fileName, imgData, {base64: true});
-  });
-  var data = zip.generate({base64:false,compression:'DEFLATE'});
-  fs.writeFileSync(tmpDir + 'images.zip', data, 'binary');
-};
-
 // Send out an email
-var sendEmail = function () {
+var sendEmail = function (description, image) {
   var mailOptions = {
     from: smtpSettings.from, // sender address
     to: smtpSettings.to, // list of receivers
-    subject: 'New Screenshot Bundle',
+    subject: '[Give Me Screenshots] ' + moment.utc().format() + ' - ' + description,
     attachments: {
-      filename: dateFormat(new Date(), 'isoDateTime') + '.zip',
-      filePath: tmpDir + 'images.zip'
+      filePath: image
     }
   };
 
@@ -95,15 +80,6 @@ var sendEmail = function () {
 
     // After mail is sent, clean up tmp directory
     console.log('Cleaning up tmp directory');
-    cleanTmpDirectory();
+    fs.unlinkSync(image);    
   });
-};
-
-// Clean up the temp directory
-var cleanTmpDirectory = function () {
-  var files = fs.readdirSync(tmpDir);
-  files.forEach(function(file) {
-    var fileName = tmpDir + file;
-    fs.unlinkSync(fileName);    
-  }); 
 };
