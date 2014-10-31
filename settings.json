@@ -1,19 +1,64 @@
 { "sites": 
     [
-        { "url": "google.com",
-          "description": "Ulaanbaatar",
+        { "url": "http://www.stateair.net/web/post/1/1.html",
+          "description": "Beijing",
           "UTCHour": "16",
           "UTCMinute": "30" 
         },
-        { "url": "cnn.com",
-          "description": "Denver",
+        { "url": "http://www.stateair.net/web/post/1/2.html",
+          "description": "Chengdu",
           "UTCHour": "00",
           "UTCMinute": "30"
         },
-        { "url": "espn.com",
-          "description": "Chicago",
+        { "url": "http://www.stateair.net/web/post/1/3.html",
+          "description": "Guangzhou",
           "UTCHour": "01",
           "UTCMinute": "02"
-        }
+        },
+        { "url": "http://www.stateair.net/web/post/1/4.html",
+          "description": "Shanghai",
+          "UTCHour": "01",
+          "UTCMinute": "02"
+        },
+        { "url": "http://www.stateair.net/web/post/1/5.html",
+          "description": "Shenyang",
+          "UTCHour": "01",
+          "UTCMinute": "02"
+        },
+        { "url": "http://aqicn.org/?city=HongKong",
+          "description": "Hong Kong",
+          "UTCHour": "01",
+          "UTCMinute": "02"
+        },
+        { "url": "http://www.stateair.net/web/post/1/3.html",
+          "description": "Guangzhou",
+          "UTCHour": "01",
+          "UTCMinute": "02"
+        },
+        { "url": "http://www.stateair.net/web/post/1/3.html",
+          "description": "Guangzhou",
+          "UTCHour": "01",
+          "UTCMinute": "02"
+        },
+        { "url": "http://www.stateair.net/web/post/1/3.html",
+          "description": "Guangzhou",
+          "UTCHour": "01",
+          "UTCMinute": "02"
+        },
+        { "url": "http://www.stateair.net/web/post/1/3.html",
+          "description": "Guangzhou",
+          "UTCHour": "01",
+          "UTCMinute": "02"
+        },
+        { "url": "http://www.stateair.net/web/post/1/3.html",
+          "description": "Guangzhou",
+          "UTCHour": "01",
+          "UTCMinute": "02"
+        },
+        { "url": "http://www.stateair.net/web/post/1/3.html",
+          "description": "Guangzhou",
+          "UTCHour": "01",
+          "UTCMinute": "02"
+        },
     ]
 }
