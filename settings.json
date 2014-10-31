@@ -2,7 +2,7 @@
     [
         { "url": "http://www.stateair.net/web/post/1/1.html",
           "description": "Beijing",
-          "UTCHour": "16",
+          "UTCHour": "00",
           "UTCMinute": "30" 
         },
         { "url": "http://www.stateair.net/web/post/1/2.html",
@@ -12,53 +12,68 @@
         },
         { "url": "http://www.stateair.net/web/post/1/3.html",
           "description": "Guangzhou",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+          "UTCHour": "00",
+          "UTCMinute": "30"
         },
         { "url": "http://www.stateair.net/web/post/1/4.html",
           "description": "Shanghai",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+          "UTCHour": "00",
+          "UTCMinute": "00"
         },
         { "url": "http://www.stateair.net/web/post/1/5.html",
           "description": "Shenyang",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+          "UTCHour": "00",
+          "UTCMinute": "00"
         },
         { "url": "http://aqicn.org/?city=HongKong",
           "description": "Hong Kong",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+          "UTCHour": "00",
+          "UTCMinute": "00"
         },
-        { "url": "http://www.stateair.net/web/post/1/3.html",
-          "description": "Guangzhou",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+        { "url": "http://sca.p.state.sbu/sites/newdelhi/AQM/default.aspx",
+          "description": "All Posts in India",
+          "UTCHour": "02",
+          "UTCMinute": "30"
         },
-        { "url": "http://www.stateair.net/web/post/1/3.html",
-          "description": "Guangzhou",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+        { "url": "http://aqicn.org/city/chile/las-condes/",
+          "description": "Santiago",
+          "UTCHour": "11",
+          "UTCMinute": "00"
         },
-        { "url": "http://www.stateair.net/web/post/1/3.html",
-          "description": "Guangzhou",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+        { "url": "http://aqicn.org/city/mexico/mexico/hospital-general-de-mexico/",
+          "description": "Mexico City",
+          "UTCHour": "14",
+          "UTCMinute": "00"
         },
-        { "url": "http://www.stateair.net/web/post/1/3.html",
-          "description": "Guangzhou",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+        { "url": "http://www.agaar.mn/station/10",
+          "description": "Ulaanbaatar",
+          "UTCHour": "00",
+          "UTCMinute": "00"
         },
-        { "url": "http://www.stateair.net/web/post/1/3.html",
-          "description": "Guangzhou",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+        { "url": "http://aqicn.org/city/poland/malopolska/krakow/aleja-krasinskiego/",
+          "description": "Krakow",
+          "UTCHour": "07",
+          "UTCMinute": "00"
         },
-        { "url": "http://www.stateair.net/web/post/1/3.html",
-          "description": "Guangzhou",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+        { "url": "http://airnow.gov/index.cfm?action=airnow.local_state",
+          "description": "Washington, DC",
+          "UTCHour": "12",
+          "UTCMinute": "00"
         },
+        { "url": "http://aqicn.org/city/vietnam/hanoi/",
+          "description": "Hanoi",
+          "UTCHour": "01",
+          "UTCMinute": "00"
+        },
+        { "url": "http://aqicn.org/city/thailand/chiangmai/city-hall/",
+          "description": "Chiang Mai",
+          "UTCHour": "01",
+          "UTCMinute": "00"
+        },
+        { "url": "http://aqicn.org/city/colombia/bogota/puente-aranda/",
+          "description": "Bogata",
+          "UTCHour": "13",
+          "UTCMinute": "00"
+        }
     ]
 }
