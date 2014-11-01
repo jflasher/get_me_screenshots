@@ -6,6 +6,7 @@ var fs = require('fs');
 var smtpSettings = require('./smtp.json');
 var mailer = require('./mailer');
 var settings = require('./settings.json');
+var uuid = require('node-uuid');
 var moment = require('moment');
 moment().format();
 
@@ -39,7 +40,7 @@ mailer.setup(smtpSettings);
 // Get the screenshot and send via email
 var getScreenshot = function (site) {
   console.log('[' + moment.utc().format() + '] Getting screenshot of ' + site.url);
-  var filePath = tmpDir + site.description + '.png';
+  var filePath = tmpDir + uuid.v4() + '.png';
   webshot(site.url, filePath, function(err) {
     sendEmail(site.description, filePath);
   });
@@ -80,6 +81,10 @@ var sendEmail = function (description, image) {
 
     // After mail is sent, clean up tmp directory
     console.log('Cleaning up tmp directory');
-    fs.unlinkSync(image);    
+    if (fs.existsSync(image)) {
+      fs.unlinkSync(image);
+    } else {
+      console.log('Could not find image to delete, something surely went wrong');
+    }
   });
 };
