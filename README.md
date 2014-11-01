@@ -14,3 +14,5 @@ To run
     cp smtp_sample.json smtp.json
     vim smtp.json
     node app.js
+
+*Note: If images aren't showing up correctly in the emails, check out [this known phantomJS issue](https://github.com/ariya/phantomjs/issues/10904).*
