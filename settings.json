@@ -55,10 +55,10 @@
           "UTCHour": "07",
           "UTCMinute": "00"
         },
-        { "url": "http://airnow.gov/index.cfm?action=airnow.local_state",
+        { "url": "http://airnow.gov/index.cfm?action=airnow.local_city&zipcode=20009&submit=Go",
           "description": "Washington, DC",
-          "UTCHour": "12",
-          "UTCMinute": "00"
+          "UTCHour": "01",
+          "UTCMinute": "02"
         },
         { "url": "http://aqicn.org/city/vietnam/hanoi/",
           "description": "Hanoi",
