@@ -30,7 +30,7 @@
           "UTCHour": "00",
           "UTCMinute": "00"
         },
-        { "url": "http://sca.p.state.sbu/sites/newdelhi/AQM/default.aspx",
+        { "url": "http://newdelhi.usembassy.gov/airqualitydataemb.html",
           "description": "All Posts in India",
           "UTCHour": "02",
           "UTCMinute": "30"
