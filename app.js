@@ -41,7 +41,11 @@ mailer.setup(smtpSettings);
 var getScreenshot = function (site) {
   console.log('[' + moment.utc().format() + '] Getting screenshot of ' + site.url);
   var filePath = tmpDir + uuid.v4() + '.png';
-  webshot(site.url, filePath, function(err) {
+  var options = { 'renderDelay': 40000 };
+  webshot(site.url, filePath, options, function(err) {
+    if (err) {
+      return console.log(err);
+    }
     sendEmail(site.description, filePath);
   });
 };
