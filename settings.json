@@ -57,8 +57,8 @@
         },
         { "url": "http://airnow.gov/index.cfm?action=airnow.local_city&zipcode=20009&submit=Go",
           "description": "Washington, DC",
-          "UTCHour": "01",
-          "UTCMinute": "02"
+          "UTCHour": "13",
+          "UTCMinute": "05"
         },
         { "url": "http://aqicn.org/city/vietnam/hanoi/",
           "description": "Hanoi",
@@ -74,6 +74,11 @@
           "description": "Bogata",
           "UTCHour": "13",
           "UTCMinute": "00"
+        },
+        { "url": "http://www.fhmzbih.gov.ba/latinica/ZRAK/tabela-zrak22.php",
+          "description": "Sarajevo",
+          "UTCHour": "07",
+          "UTCMinute": "07"
         }
     ]
 }
