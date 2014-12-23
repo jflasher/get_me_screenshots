@@ -39,14 +39,30 @@ mailer.setup(smtpSettings);
 
 // Get the screenshot and send via email
 var getScreenshot = function (site) {
-  console.log('[' + moment.utc().format() + '] Getting screenshot of ' + site.url);
+  console.log('[' + moment.utc().format() + '] Loading page for ' + site.url);
   var filePath = tmpDir + uuid.v4() + '.png';
-  var options = { 'renderDelay': 40000 };
-  webshot(site.url, filePath, options, function(err) {
+  var options = {
+    renderDelay: 10000,
+    phantomConfig: {
+      'ignore-ssl-errors': true
+    },
+    errorIfStatusIsNot200: true
+  };
+  webshot(site.url, options, function(err, renderStream) {
     if (err) {
       return console.log(err);
     }
-    sendEmail(site.description, filePath);
+
+    var file = fs.createWriteStream(filePath, {encoding: 'binary'});
+
+    renderStream.on('data', function (data) {
+      file.write(data.toString('binary'), 'binary');
+    });
+
+    renderStream.on('end', function () {
+      sendEmail(site.description, filePath);
+    })
+    
   });
 };
 
