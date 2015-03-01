@@ -1,5 +1,6 @@
 'use strict';
 
+require('newrelic');
 var webshot = require('webshot');
 var fs = require('fs');
 var mailer = require('./mailer');
