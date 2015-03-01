@@ -75,20 +75,20 @@ var getScreenshot = function (site) {
 
   });
 };
-getScreenshot(sites[0]);
-// sites.forEach(function(site) {
-//   // Figure out the delay until the first screenshot should happen and then
-//   // set a 1 day interval
-//   var timeToStart = delayToFirstScreenshot(site.UTCHour, site.UTCMinute);
-//   console.log('Will take a screenshot of ' + site.url + ' in ' +
-//     timeToStart/1000 + ' seconds.');
-//   setTimeout(function () {
-//     getScreenshot(site);
-//     setInterval(function () {
-//       getScreenshot(site);
-//     }, 24 * 60 * 60 * 1000);
-//   }, timeToStart);
-// });
+
+sites.forEach(function(site) {
+  // Figure out the delay until the first screenshot should happen and then
+  // set a 1 day interval
+  var timeToStart = delayToFirstScreenshot(site.UTCHour, site.UTCMinute);
+  console.log('Will take a screenshot of ' + site.url + ' in ' +
+    timeToStart/1000 + ' seconds.');
+  setTimeout(function () {
+    getScreenshot(site);
+    setInterval(function () {
+      getScreenshot(site);
+    }, 24 * 60 * 60 * 1000);
+  }, timeToStart);
+});
 
 // Send out an email
 var sendEmail = function (description, image) {
