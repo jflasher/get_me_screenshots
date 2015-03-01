@@ -1,3 +1,5 @@
 node_modules
 smtp.json
 app.log
+tmp/*.png
+.env

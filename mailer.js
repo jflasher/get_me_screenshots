@@ -5,12 +5,12 @@ var transport = null;
 
 exports.setup = function(settings) {
   transport = nodemailer.createTransport('SMTP', {
-    host: settings.host,
+    host: process.env.MAILER_HOST || settings.host,
     secureConnection: true,
     port: 465,
     auth: {
-        user: settings.user,
-        pass: settings.password
+        user: process.env.MAILER_USER || settings.user,
+        pass: process.env.MAILER_PASSWORD || settings.password
     }
   });
 };

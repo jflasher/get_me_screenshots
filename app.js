@@ -1,14 +1,23 @@
 'use strict';
 
 var webshot = require('webshot');
-var async = require('async');
 var fs = require('fs');
-var smtpSettings = require('./smtp.json');
 var mailer = require('./mailer');
 var settings = require('./settings.json');
 var uuid = require('node-uuid');
 var moment = require('moment');
+var http = require('http');
 moment().format();
+
+var port = process.env.PORT || 5000;
+
+// try to load smtp settings from file
+var smtpSettings = {};
+try {
+  smtpSettings = require('./smtp.json');
+} catch (e) {
+  console.log('No smtp settings file found but that may be ok.');
+}
 
 ////
 // Possible changes here
@@ -61,30 +70,30 @@ var getScreenshot = function (site) {
 
     renderStream.on('end', function () {
       sendEmail(site.description, filePath);
-    })
-    
+    });
+
   });
 };
-
-sites.forEach(function(site) {
-  // Figure out the delay until the first screenshot should happen and then 
-  // set a 1 day interval
-  var timeToStart = delayToFirstScreenshot(site.UTCHour, site.UTCMinute);
-  console.log('Will take a screenshot of ' + site.url + ' in ' +
-    timeToStart/1000 + ' seconds.');
-  setTimeout(function () {
-    getScreenshot(site);
-    setInterval(function () {
-      getScreenshot(site);
-    }, 24 * 60 * 60 * 1000);
-  }, timeToStart);
-});
+getScreenshot(sites[0]);
+// sites.forEach(function(site) {
+//   // Figure out the delay until the first screenshot should happen and then
+//   // set a 1 day interval
+//   var timeToStart = delayToFirstScreenshot(site.UTCHour, site.UTCMinute);
+//   console.log('Will take a screenshot of ' + site.url + ' in ' +
+//     timeToStart/1000 + ' seconds.');
+//   setTimeout(function () {
+//     getScreenshot(site);
+//     setInterval(function () {
+//       getScreenshot(site);
+//     }, 24 * 60 * 60 * 1000);
+//   }, timeToStart);
+// });
 
 // Send out an email
 var sendEmail = function (description, image) {
   var mailOptions = {
-    from: smtpSettings.from, // sender address
-    to: smtpSettings.to, // list of receivers
+    from: process.env.MAILER_FROM || smtpSettings.from, // sender address
+    to: process.env.MAILER_TO || smtpSettings.to, // list of receivers
     subject: '[Give Me Screenshots] ' + moment.utc().format() + ' - ' + description,
     attachments: {
       filePath: image
@@ -108,3 +117,9 @@ var sendEmail = function (description, image) {
     }
   });
 };
+
+// A tiny web server to keep this thing alive
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('nothing to see here\n');
+}).listen(port);
